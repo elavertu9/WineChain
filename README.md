@@ -10,5 +10,6 @@ CS481 Group Project
 ## Build Instructions
 #### Frontend
 * Navigate to WineChain/frontend
+* Run npm install
 * Run npm start
   * Starts localhost at port 3000
