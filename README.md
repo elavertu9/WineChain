@@ -6,3 +6,9 @@ CS481 Group Project
 * Brandt Reutimann
 * Cody Coleman
 * Kyle Lagerberg
+
+## Build Instructions
+#### Frontend
+* Navigate to WineChain/frontend
+* Run npm start
+  * Starts localhost at port 3000
