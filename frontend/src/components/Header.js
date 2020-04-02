@@ -13,7 +13,10 @@ export default class Header extends Component {
               <Navbar expand="md">
                       <Nav className="mr-auto" navbar>
                           <NavItem>
-                              <NavLink href="/listing" className="nav-font">Wine Listing</NavLink>
+                              <NavLink href="/" className='nav-font'>Home</NavLink>
+                          </NavItem>
+                          <NavItem>
+                              <NavLink href="/listing" className="nav-font">Coins</NavLink>
                           </NavItem>
                           <NavItem>
                               <NavLink href="/about" className="nav-font">About Us</NavLink>
