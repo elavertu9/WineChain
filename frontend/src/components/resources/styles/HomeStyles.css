@@ -6,7 +6,7 @@
 }
 
 .button {
-    background-color: #ff5e6c; /* Green */
+    background-color: #ff5e6c;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -14,4 +14,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
+}
+
+.home-img {
+    border: solid 8px #ff5e6c;
 }

@@ -1,0 +1,42 @@
+.element-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wc-image {
+    margin-top: 5%;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.wc-card {
+    width: 500px;
+    height:450px;
+    padding-bottom: 50px;
+}
+
+.listing-data {
+    width: 40%;
+    height: 40%;
+    padding-bottom: 25px;
+}
+
+.btn-wc {
+    background-color: #ff5e6c;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    width: 100%;
+}
+
+.center-text {
+    text-align: center;
+}
