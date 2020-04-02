@@ -1,0 +1,16 @@
+.about-card {
+    width: 100%;
+    box-shadow: 10px 10px 5px grey;
+}
+
+.element-center {
+    text-align: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.pic {
+    border-radius: 10px;
+    border: solid black 2px;
+}
