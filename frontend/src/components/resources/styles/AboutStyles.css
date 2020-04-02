@@ -14,3 +14,11 @@
     border-radius: 10px;
     border: solid black 2px;
 }
+
+label a {
+    color: black;
+}
+
+label a:hover {
+    color: white;
+}
