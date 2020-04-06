@@ -4,6 +4,7 @@ import './resources/styles/AboutStyles.css';
 import Lavertu from './resources/images/lavertu.png';
 import Coleman from './resources/images/cody.png';
 import Reutimann from './resources/images/brandt.png';
+import Grundy from './resources/images/grundy.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class About extends Component {
@@ -84,7 +85,22 @@ export default class About extends Component {
                     <Col className='element-center'>
                         <Card className='about-card' style={{backgroundColor: '#ff5e6c'}}>
                             <CardBody>
+                                <img src={Grundy} width='300px' height='300px' className='pic'/>
                                 <h3>Kyle Lagerberg</h3>
+                                <Label>
+                                    <a href='https://www.linkedin.com/in/kyle-lagerberg-19479112a'>
+                                        <FontAwesomeIcon icon="globe" size='3x'/>
+                                    </a>
+                                </Label>
+                                <p>
+				                            Kyle Lagerberg is majoring in Computer Science at Colorado State University, he is set to graduate in May 2020.
+                                    During his undergrad Kyle has been on a research team working through the Biochemistry Department developing applications to
+                                    further assist the study of protein molecules. This research project primarilly focused on the use of virtual reality to assist
+                                    with 3D visualization of complex molecular structures.
+
+                                    Kyle's main interests in computing include networking and database systems along with graphics and machine learning.
+                                    Some of his hobbies are snowboarding, paddleboarding, plantcare, playing games, and watching movies.
+                                </p>
                             </CardBody>
                         </Card>
                     </Col>
