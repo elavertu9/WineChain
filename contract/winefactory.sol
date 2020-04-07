@@ -21,6 +21,8 @@ contract WineFactory is Ownable {
         uint16 vintage; // Grape vintage
         bool consumed; // Whether the wine has been consumed...
         // uint256 uuid; // Unique wine identifying id --> does this need to be included?
+        string description; // Advertised on coin
+        // string ingredients; // might need for coin 
     }
     
     WineBottle[] public wines;
