@@ -1,0 +1,21 @@
+.searchForm {
+    background-color:  #ff5e6c;
+    border: 2px solid black;
+}
+
+.smaller {
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.element-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.buttonDropdown {
+    width: 100%;
+}

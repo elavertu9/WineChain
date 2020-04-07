@@ -6,6 +6,7 @@ import WCBlue from './resources/images/wine-coins/wc-blue.png';
 import WCLightBlue from './resources/images/wine-coins/wc-lightblue.png';
 import WCRed from './resources/images/wine-coins/wc-red.png';
 import WCGreen from './resources/images/wine-coins/wc-green.png';
+import Toolbar from './Toolbar';
 
 export default class WineListing extends Component {
     constructor(props) {
@@ -26,6 +27,8 @@ export default class WineListing extends Component {
                       <img src={WCTitle} width='450px'/>
                   </Col>
               </Row>
+              <br/>
+              <Toolbar/>
               <br/>
               <table>
                   <tr>

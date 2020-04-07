@@ -7,8 +7,9 @@ import "./App.css";
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faGlobe} from '@fortawesome/free-solid-svg-icons';
+import {faTools} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faGlobe);
+library.add(faGlobe, faTools);
 
 function App() {
   return (
