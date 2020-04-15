@@ -10,6 +10,14 @@ CS481 Group Project
 ## Build Instructions
 #### Frontend
 * Navigate to WineChain/client
-* Run npm install
-* Run npm start
+* Run 
+  * ```npm install```
+* Run 
+  * ```npm start```
   * Starts localhost at port 3000
+
+#### Truffle Testing and Compiling Contracts
+* To compile the contract code
+  * ```truffle compile```
+* To run the contract tests
+  * ```truffle test```
