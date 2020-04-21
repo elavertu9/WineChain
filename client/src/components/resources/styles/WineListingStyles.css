@@ -37,6 +37,11 @@
     width: 100%;
 }
 
+.btn-wc:hover {
+    background-color: #ffd0d7;
+    box-shadow: 5px 10px #888888;
+}
+
 .center-text {
     text-align: center;
 }
