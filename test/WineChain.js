@@ -1,5 +1,6 @@
 const WineChain = artifacts.require("WineChain");
 const expect = require('chai').expect;
+const chai = require('chai');
 
 contract("WineChain", (accounts) => {
     let [alice, bob] = accounts;
@@ -73,5 +74,18 @@ contract("WineChain", (accounts) => {
         await contractInstance.safeTransferFrom(alice, bob, tokenId);
         result = await contractInstance.ownerOf(tokenId);
         expect(result).to.equal(bob);
+    });
+
+    it("shouldn't allow non-owners to mint tokens", async () => {
+        try {
+            let result = await contractInstance.addWineToChain(
+                bob, "Kermit Lynch", "Sav Blanc", "Franc", 2003,
+                {from: bob}
+            );
+            chai.assert.fail();
+        } catch (err) {
+            chai.assert.isOk(err, "Expecting an error");
+        }
+
     });
 });
