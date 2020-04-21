@@ -1,0 +1,14 @@
+.element-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.account-border {
+    border: 3px #ff5e6c solid;
+}
+
+.pad {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}

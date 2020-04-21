@@ -16,6 +16,11 @@
     font-size: 20px;
 }
 
+.button:hover {
+    background-color: #ffd0d7;
+    box-shadow: 5px 10px #888888;
+}
+
 .home-img {
     border: solid 8px #ff5e6c;
 }

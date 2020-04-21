@@ -9,8 +9,10 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faGlobe} from '@fortawesome/free-solid-svg-icons';
 import {faTools} from '@fortawesome/free-solid-svg-icons';
+import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import MetaMaskSettings from "./components/MetaMaskSettings";
 
-library.add(faGlobe, faTools);
+library.add(faGlobe, faTools, faArrowRight);
 
 export default class App extends Component {
     constructor(props) {
@@ -23,6 +25,7 @@ export default class App extends Component {
             CS: {},
             RC: {},
 
+            web3Error: false,
             loading: false,
             value: "",
             message: "",
@@ -38,15 +41,13 @@ export default class App extends Component {
             console.log("componentDidMount");
             let web3 = await getWeb3();
 
-            // Get accounts
-            let accounts = await web3.eth.getAccounts();
+            this.setState({
+                web3: web3
+            });
 
-            let purchaserAdddress = accounts[0];
-
-            console.log(purchaserAdddress);
         } catch(error) {
             console.log(error);
-            alert("Failed to load web3, accounts, or contract. Check console for details.");
+            this.setState({web3Error: true});
         }
     };
 
@@ -54,7 +55,9 @@ export default class App extends Component {
         return (
             <Router>
                 <div>
-                    <Header></Header>
+                    <Header/>
+                    <MetaMaskSettings web3={this.state.web3}/>
+                    <br/>
                 </div>
 
                 <Switch>
