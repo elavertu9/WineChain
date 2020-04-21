@@ -8,7 +8,15 @@ CS481 Group Project
 * Kyle Lagerberg
 
 ## Build Instructions
-#### Frontend
+#### Frontend Contracts & Truffle
+* Navigate to WineChain/
+ * ```npm install```
+* To compile the contract code
+  * ```truffle compile```
+* To run the contract tests
+  * ```truffle test```
+  
+#### Frontend Dapp (React)
 * Navigate to WineChain/client
 * Run 
   * ```npm install```
@@ -16,8 +24,3 @@ CS481 Group Project
   * ```npm start```
   * Starts localhost at port 3000
 
-#### Truffle Testing and Compiling Contracts
-* To compile the contract code
-  * ```truffle compile```
-* To run the contract tests
-  * ```truffle test```
