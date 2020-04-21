@@ -10,7 +10,7 @@ CS481 Group Project
 ## Build Instructions
 #### Frontend Contracts & Truffle
 * Navigate to WineChain/
- * ```npm install```
+  * ```npm install```
 * To compile the contract code
   * ```truffle compile```
 * To run the contract tests
