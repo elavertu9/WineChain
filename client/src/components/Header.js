@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import {Navbar, NavbarBrand, Nav, NavItem, NavLink, NavbarText} from 'reactstrap';
+import {Navbar, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import WCLogo from "./resources/images/winechain.png";
 import "./resources/styles/HeaderStyles.css";
 
 export default class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

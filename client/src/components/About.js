@@ -8,10 +8,6 @@ import Grundy from './resources/images/grundy.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class About extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Container>
@@ -20,7 +16,7 @@ export default class About extends Component {
                     <Col className='element-center'>
                         <Card className='about-card' style={{backgroundColor: '#ff5e6c'}}>
                             <CardBody>
-                                <img src={Lavertu} width='300px' height='300px' className='pic'/>
+                                <img src={Lavertu} alt="Evan Lavertu" width='300px' height='300px' className='pic'/>
                                 <h3>Evan Lavertu</h3>
                                 <Label>
                                     <a href='https://cs.colostate.edu/~elavertu'>
@@ -40,7 +36,7 @@ export default class About extends Component {
                     <Col className='element-center'>
                         <Card className='about-card' style={{backgroundColor: '#ff5e6c'}}>
                             <CardBody>
-                                <img src={Coleman} width='300px' height='300px' className='pic'/>
+                                <img src={Coleman} alt="Cody Coleman" width='300px' height='300px' className='pic'/>
                                 <h3>Cody Coleman</h3>
                                 <br/>
                                 <p>
@@ -62,7 +58,7 @@ export default class About extends Component {
                     <Col className='element-center'>
                         <Card className='about-card' style={{backgroundColor: '#ff5e6c'}}>
                             <CardBody>
-                                <img src={Reutimann} width='300px' height='300px' className='pic'/>
+                                <img src={Reutimann} alt="Brandt Reutimann" width='300px' height='300px' className='pic'/>
                                 <h3>Brandt Reutimann</h3>
                                 <Label>
                                     <a href='http://www.brandtreutimann.dev'>
@@ -85,7 +81,7 @@ export default class About extends Component {
                     <Col className='element-center'>
                         <Card className='about-card' style={{backgroundColor: '#ff5e6c'}}>
                             <CardBody>
-                                <img src={Grundy} width='300px' height='300px' className='pic'/>
+                                <img src={Grundy} alt="Kyle Lagerberg" width='300px' height='300px' className='pic'/>
                                 <h3>Kyle Lagerberg</h3>
                                 <Label>
                                     <a href='https://www.linkedin.com/in/kyle-lagerberg-19479112a'>
@@ -93,7 +89,7 @@ export default class About extends Component {
                                     </a>
                                 </Label>
                                 <p>
-				                            Kyle Lagerberg is majoring in Computer Science at Colorado State University, he is set to graduate in May 2020.
+                                    Kyle Lagerberg is majoring in Computer Science at Colorado State University, he is set to graduate in May 2020.
                                     During his undergrad Kyle has been on a research team working through the Biochemistry Department developing applications to
                                     further assist the study of protein molecules. This research project primarilly focused on the use of virtual reality to assist
                                     with 3D visualization of complex molecular structures.
