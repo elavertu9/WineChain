@@ -1,0 +1,31 @@
+{
+  "name": "winechain",
+  "version": "1.0.0",
+  "description": "A ethereum blockchain application for secure wine transactions",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "openzeppelin-solidity": "^2.5.0",
+    "truffle": "^5.1.21",
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.1"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elavertu9/WineChain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elavertu9/WineChain/issues"
+  },
+  "homepage": "https://github.com/elavertu9/WineChain#readme"
+}
