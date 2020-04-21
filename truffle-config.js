@@ -3,7 +3,7 @@ const fs = require("fs")
 const HDWalletProvider = require('truffle-hdwallet-provider');
 
 const infuraKey = "7907400a35c54e9da266b928dcaea45a";
-const mnemonic = fs.readFileSync(".secret").toString().trim();
+//const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 
 module.exports = {
@@ -14,6 +14,12 @@ module.exports = {
     develop: {
       port: 7545,
       network_id: '*'
+    },
+
+    ganache: {
+      host: "127.0.0.1",
+      port: 7545,
+      network_id: "*"
     }
   }
 };

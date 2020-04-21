@@ -11,6 +11,7 @@ import {faGlobe} from '@fortawesome/free-solid-svg-icons';
 import {faTools} from '@fortawesome/free-solid-svg-icons';
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import MetaMaskSettings from "./components/MetaMaskSettings";
+import WineChainContract from './contracts/WineChain';
 
 library.add(faGlobe, faTools, faArrowRight);
 
@@ -21,9 +22,7 @@ export default class App extends Component {
         this.state = {
             web3: null,
             accounts: null,
-            CR: {},
-            CS: {},
-            RC: {},
+            WC: {},
 
             web3Error: false,
             loading: false,
@@ -38,12 +37,28 @@ export default class App extends Component {
 
     componentDidMount = async() => {
         try {
-            console.log("componentDidMount");
             let web3 = await getWeb3();
 
             this.setState({
                 web3: web3
             });
+
+            let networkId = await web3.eth.net.getId();
+            let deployedNetwork = WineChainContract.networks[networkId];
+            let WC = new web3.eth.Contract(
+                WineChainContract.abi,
+                deployedNetwork && deployedNetwork.address
+            );
+
+            //let mySym = await WC.methods.symbol().call();
+            //console.log("my symbol", mySym);
+            console.log(WC.methods);
+
+            this.setState({
+                WC: WC
+            });
+
+
 
         } catch(error) {
             console.log(error);
@@ -64,7 +79,7 @@ export default class App extends Component {
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/home' component={Home}/>
                     <Route exact path='/about' component={About}/>
-                    <Route exact path='/listing' component={WineListing}/>
+                    <Route exact path='/listing' render={(props) => <WineListing {...props} WC={this.state.WC}/>}/>
                 </Switch>
             </Router>
         );
