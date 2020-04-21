@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle, CardText, CardFooter} from 'reactstrap';
+import {Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle, CardText} from 'reactstrap';
 import './resources/styles/WineListingStyles.css';
 import WCTitle from './resources/images/wine-coins/wc-title.png';
 import WCBlue from './resources/images/wine-coins/wc-blue.png';
@@ -24,7 +24,7 @@ export default class WineListing extends Component {
           <Container>
               <Row>
                   <Col className='element-center'>
-                      <img src={WCTitle} width='450px'/>
+                      <img alt="WineCoin" src={WCTitle} width='450px'/>
                   </Col>
               </Row>
               <br/>
@@ -34,7 +34,7 @@ export default class WineListing extends Component {
                   <tr>
                       <td className='listing-data'>
                           <Card className='wc-card'>
-                              <img src={WCBlue} className='wc-image'/>
+                              <img alt="WineCoin" src={WCBlue} className='wc-image'/>
                               <CardBody>
                                   <CardTitle className='center-text'><h4>Screaming Eagle Cabernet 1992</h4></CardTitle>
                                   <CardSubtitle className='center-text'><h5>$500,000</h5></CardSubtitle>
@@ -45,7 +45,7 @@ export default class WineListing extends Component {
                       </td>
                       <td className='listing-data'>
                           <Card className='wc-card'>
-                              <img src={WCGreen} className='wc-image'/>
+                              <img alt="WineCoin" src={WCGreen} className='wc-image'/>
                               <CardBody>
                                   <CardTitle className='center-text'><h4>Jeroboam of Chateau Mouton-Rothschild 1945</h4></CardTitle>
                                   <CardSubtitle className='center-text'><h5>$310,000</h5></CardSubtitle>
@@ -60,7 +60,7 @@ export default class WineListing extends Component {
                   <tr>
                       <td className='listing-data'>
                           <Card className='wc-card'>
-                              <img src={WCGreen} className='wc-image'/>
+                              <img alt="WineCoin" src={WCGreen} className='wc-image'/>
                               <CardBody>
                                   <CardTitle className='center-text'><h4>Cheval Blanc 1947</h4></CardTitle>
                                   <CardSubtitle className='center-text'><h5>$305,000</h5></CardSubtitle>
@@ -71,7 +71,7 @@ export default class WineListing extends Component {
                       </td>
                       <td className='listing-data'>
                           <Card className='wc-card'>
-                              <img src={WCLightBlue} className='wc-image'/>
+                              <img alt="WineCoin" src={WCLightBlue} className='wc-image'/>
                               <CardBody>
                                   <CardTitle className='center-text'><h4>Shipwrecked 1907 Heidsieck</h4></CardTitle>
                                   <CardSubtitle className='center-text'><h5>$275,000</h5></CardSubtitle>
@@ -85,7 +85,7 @@ export default class WineListing extends Component {
                   <tr>
                       <td className='listing-data'>
                           <Card className='wc-card'>
-                              <img src={WCRed} className='wc-image'/>
+                              <img alt="WineCoin" src={WCRed} className='wc-image'/>
                               <CardBody>
                                   <CardTitle className='center-text'><h4>Chateau Lafite 1869</h4></CardTitle>
                                   <CardSubtitle className='center-text'><h5>$230,000</h5></CardSubtitle>
@@ -96,7 +96,7 @@ export default class WineListing extends Component {
                       </td>
                       <td className='listing-data'>
                           <Card className='wc-card'>
-                              <img src={WCBlue} className='wc-image'/>
+                              <img alt="WineCoin" src={WCBlue} className='wc-image'/>
                               <CardBody>
                                   <CardTitle className='center-text'><h4>Chateau Margaux 1787</h4></CardTitle>
                                   <CardSubtitle className='center-text'><h5>$225,000</h5></CardSubtitle>
