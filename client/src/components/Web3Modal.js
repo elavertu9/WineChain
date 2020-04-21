@@ -1,12 +1,9 @@
 import React, {Component} from "react";
-import {Container, Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {Container, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import Error from './resources/images/error.png';
 import "./resources/styles/Web3ModalStyles.css";
 
 export default class Web3Modal extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

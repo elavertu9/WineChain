@@ -15,8 +15,13 @@ export default class WineListing extends Component {
         // Need to populate array of existing coins using ABI
         // Used to populate coins on Wine Listing page
         this.state = {
-            coins: []
+            coins: [],
         };
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // WC ABI stored in props.WC
+        console.log(this.props.WC.methods);
     }
 
     render() {

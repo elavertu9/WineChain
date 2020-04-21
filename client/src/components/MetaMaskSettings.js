@@ -14,10 +14,6 @@ export default class extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        this.setState({web3: nextProps.web3});
-    }
-
     componentDidUpdate = async() => {
         try {
             // Get accounts
