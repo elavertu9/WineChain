@@ -44,6 +44,7 @@ contract WineToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable{
 
     function addWineToChain(address _purchaser_address, string memory _producer,
         string memory _varietal, string memory _country, uint16 _vintage) public onlyOwner
+        returns (uint256 tokenId)
     {
         // Construct new bottle
         WineBottle memory newBottle = WineBottle({
@@ -60,6 +61,7 @@ contract WineToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable{
         wineData[currentId] = newBottle;
         // Mint a new wine token
         _mint(_purchaser_address, currentId);
+        return currentId;
     }
 
 }

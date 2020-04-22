@@ -106,4 +106,19 @@ contract("WineChain", (accounts) => {
             expect(bottle.producer).to.equal(producers[i]);
         }
     });
+
+    it("should be able to burn a token", async () => {
+        let result = await contractInstance.addWineToChain(
+            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            {from: alice}
+        );
+        await contractInstance.addWineToChain(
+            alice, "Domaine en Vallee", "Grenache", "France", 2015,
+            {from: alice}
+        );
+        let burnId = result.logs[0].args.tokenId.words[0];
+        await contractInstance.burn(burnId);
+        result = await contractInstance.exists(burnId);
+        expect(result).to.equal(false);
+    });
 });
