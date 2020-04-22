@@ -74,4 +74,36 @@ contract("WineChain", (accounts) => {
         result = await contractInstance.ownerOf(tokenId);
         expect(result).to.equal(bob);
     });
+
+    it("should be able to get token balance of an owner", async () => {
+        await contractInstance.addWineToChain(
+            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            {from: alice}
+        );
+        await contractInstance.addWineToChain(
+            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            {from: alice}
+        );
+        let result = await contractInstance.balanceOf(alice);
+        expect(result.words[0]).to.equal(2);
+    });
+
+    it("should be able to get tokens from owner by index", async () => {
+        await contractInstance.addWineToChain(
+            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            {from: alice}
+        );
+        await contractInstance.addWineToChain(
+            alice, "Domaine en Vallee", "Grenache", "France", 2015,
+            {from: alice}
+        );
+        let result = await contractInstance.balanceOf(alice);
+        let count = result.words[0];
+        let producers = ["Chelan Vineyards", "Domaine en Vallee"]
+        for (let i = 0; i < count; i++) {
+            result = await contractInstance.tokenOfOwnerByIndex(alice, i);
+            let bottle = await contractInstance.getWineData(result.words[0]);
+            expect(bottle.producer).to.equal(producers[i]);
+        }
+    });
 });
