@@ -12,6 +12,7 @@ import {faTools} from '@fortawesome/free-solid-svg-icons';
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import MetaMaskSettings from "./components/MetaMaskSettings";
 import WineChainContract from './contracts/WineChain';
+import WineCoinContract from './contracts/WineCoin';
 
 library.add(faGlobe, faTools, faArrowRight);
 
@@ -22,7 +23,7 @@ export default class App extends Component {
         this.state = {
             web3: null,
             accounts: null,
-            WC: {},
+            WineChain: {},
 
             web3Error: false,
             loading: false,
@@ -35,30 +36,28 @@ export default class App extends Component {
         };
     }
 
+    // Runs before render to ensure everything is calculated
     componentDidMount = async() => {
         try {
             let web3 = await getWeb3();
 
-            this.setState({
-                web3: web3
-            });
-
             let networkId = await web3.eth.net.getId();
+
             let deployedNetwork = WineChainContract.networks[networkId];
-            let WC = new web3.eth.Contract(
+
+            // Get contract ABI
+            let WineChain = new web3.eth.Contract(
                 WineChainContract.abi,
                 deployedNetwork && deployedNetwork.address
             );
 
             //let mySym = await WC.methods.symbol().call();
             //console.log("my symbol", mySym);
-            console.log(WC.methods);
 
             this.setState({
-                WC: WC
+                WineChain: WineChain,
+                web3: web3
             });
-
-
 
         } catch(error) {
             console.log(error);
@@ -71,10 +70,12 @@ export default class App extends Component {
             <Router>
                 <div>
                     <Header/>
+                    <!--If there are problems with Web3, MetaMaskSettings takes care of it-->
                     <MetaMaskSettings web3={this.state.web3}/>
                     <br/>
                 </div>
 
+                <!--Navigation Endpoints-->
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/home' component={Home}/>
