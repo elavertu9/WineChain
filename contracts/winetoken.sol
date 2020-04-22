@@ -1,9 +1,11 @@
 pragma solidity >=0.5.0 <0.6.0;
 
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol';
+import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Enumerable.sol';
+import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol';
 import '../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
-contract WineToken is ERC721, Ownable{
+contract WineToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable{
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
@@ -11,7 +13,7 @@ contract WineToken is ERC721, Ownable{
     string public constant name = "WineChain Token";
     string public constant symbol = "WCT";
 
-    Counters.Counter public totalSupply;
+    // Counters.Counter public totalSupply;
 
     struct WineBottle {
         string producer; // Wine Vineyard / Maker
@@ -42,6 +44,7 @@ contract WineToken is ERC721, Ownable{
 
     function addWineToChain(address _purchaser_address, string memory _producer,
         string memory _varietal, string memory _country, uint16 _vintage) public onlyOwner
+        returns (uint256 tokenId)
     {
         // Construct new bottle
         WineBottle memory newBottle = WineBottle({
@@ -58,6 +61,7 @@ contract WineToken is ERC721, Ownable{
         wineData[currentId] = newBottle;
         // Mint a new wine token
         _mint(_purchaser_address, currentId);
+        return currentId;
     }
 
 }
