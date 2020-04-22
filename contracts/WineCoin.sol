@@ -43,6 +43,18 @@ contract WineCoin is ERC721, ERC721Enumerable, ERC721Burnable, VerifiedOriginato
         return _exists(_id);
     }
 
+    function updateBottleVerification(uint256 _id) public returns (bool) {
+        require(_exists(_id), "Bottle must exist");
+        WineBottle storage _bottle = wineData[_id];
+        address _originator = _bottle.bottle_originator;
+        if (isVerifiedOriginator(_originator)) {
+            _bottle.verified_originator = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // Use message sender instead of producer address
     function addWineToChain(string memory _producer, string memory _varietal,
     string memory _country, uint16 _vintage) public returns (uint256 tokenId)

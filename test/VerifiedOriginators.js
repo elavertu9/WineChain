@@ -87,5 +87,33 @@ contract("VerifiedOriginators", (accounts) => {
         expect(isCharlesVerified).to.equal(true);
         expect(isCarolsVerified).to.equal(false);
     });
+
+    it("should be able to update verification status post-hoc", async () => {
+        let result = await contractInstance.addWineToChain(
+            "Domaine en Vallee du Rhone", "Piaugier Sablet", "France", 2015,
+            {from: bob}
+        );
+        let id = result.logs[0].args.tokenId;
+        let wineData = await contractInstance.getWineData(id);
+        expect(wineData.verified_originator).to.equal(false);
+        await contractInstance.addVerifiedOriginator(bob, "Charles Neal Selections", {from: alice});
+        await contractInstance.updateBottleVerification(id);
+        wineData = await contractInstance.getWineData(id);
+        expect(wineData.verified_originator).to.equal(true);
+    });
+
+    it("should not change verification status if orignator is not verified", async () => {
+        let result = await contractInstance.addWineToChain(
+            "Domaine en Vallee du Rhone", "Piaugier Sablet", "France", 2015,
+            {from: bob}
+        );
+        let id = result.logs[0].args.tokenId;
+        let wineData = await contractInstance.getWineData(id);
+        expect(wineData.verified_originator).to.equal(false);
+        await contractInstance.updateBottleVerification(id);
+        wineData = await contractInstance.getWineData(id);
+        expect(wineData.verified_originator).to.equal(false);
+    })
 });
+
 
