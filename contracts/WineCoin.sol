@@ -5,7 +5,7 @@ import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Enume
 import '../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol';
 import '../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol';
 
-contract WineToken is ERC721, ERC721Enumerable, ERC721Burnable, Ownable{
+contract WineCoin is ERC721, ERC721Enumerable, ERC721Burnable, Ownable{
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
