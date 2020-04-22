@@ -1,5 +1,4 @@
-.idea
-.secret
+secrets
 .infura
 node_modules
 build/

@@ -21,16 +21,14 @@ contract("WineChain", (accounts) => {
     it("should be able to mint a new wine bottle", async () => {
         // (string memory _producer, string memory _varietal, string memory _country, uint16 vintage)
         const result = await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
-            {from: alice}
+            "Chelan Vineyards", "Rose", "United States", 2012, {from: alice}
         );
         expect(result.logs[0].args.to).to.equal(alice)
     });
 
     it("should be able to retrieve wine data", async () => {
         let result = await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
-            {from: alice}
+            "Chelan Vineyards", "Rose", "United States", 2012, {from: alice}
         );
         let tokenId = result.logs[0].args.tokenId.words[0];
         result = await contractInstance.getWineData(tokenId);
@@ -40,9 +38,9 @@ contract("WineChain", (accounts) => {
         expect(result.vintage.words[0]).to.equal(2012);
     });
 
-    it("should be able to determine the existance of a wine", async () => {
+    it("should be able to determine the existence of a wine", async () => {
         let result = await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         let tokenId = result.logs[0].args.tokenId.words[0];
@@ -56,7 +54,7 @@ contract("WineChain", (accounts) => {
 
     it("should be able to check ownership", async () => {
         let result = await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         let tokenId = result.logs[0].args.tokenId.words[0];
@@ -66,7 +64,7 @@ contract("WineChain", (accounts) => {
 
     it("should be able to transfer ownership", async () => {
         let result = await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         let tokenId = result.logs[0].args.tokenId.words[0];
@@ -77,11 +75,11 @@ contract("WineChain", (accounts) => {
 
     it("should be able to get token balance of an owner", async () => {
         await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         let result = await contractInstance.balanceOf(alice);
@@ -90,11 +88,11 @@ contract("WineChain", (accounts) => {
 
     it("should be able to get tokens from owner by index", async () => {
         await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         await contractInstance.addWineToChain(
-            alice, "Domaine en Vallee", "Grenache", "France", 2015,
+            "Domaine en Vallee", "Grenache", "France", 2015,
             {from: alice}
         );
         let result = await contractInstance.balanceOf(alice);
@@ -109,11 +107,11 @@ contract("WineChain", (accounts) => {
 
     it("should be able to burn a token", async () => {
         let result = await contractInstance.addWineToChain(
-            alice, "Chelan Vineyards", "Rose", "United States", 2012,
+            "Chelan Vineyards", "Rose", "United States", 2012,
             {from: alice}
         );
         await contractInstance.addWineToChain(
-            alice, "Domaine en Vallee", "Grenache", "France", 2015,
+            "Domaine en Vallee", "Grenache", "France", 2015,
             {from: alice}
         );
         let burnId = result.logs[0].args.tokenId.words[0];
