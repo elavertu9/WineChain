@@ -15,7 +15,8 @@ import {faUserCheck} from '@fortawesome/free-solid-svg-icons';
 import {faCog} from '@fortawesome/free-solid-svg-icons';
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 import MetaMaskSettings from "./components/MetaMaskSettings";
-import WineCoinContract from './contracts/WineCoin';
+//import WineCoinContract from './contracts/WineCoin';
+import abi from './abi.json';
 
 library.add(faGlobe, faTools, faArrowRight, faUserCheck, faCog, faPlusSquare);
 
@@ -50,13 +51,17 @@ export default class App extends Component {
 
             let web3 = await getWeb3();
 
-            let networkId = await web3.eth.net.getId();
+            const contractAddress = "0x13fFf07b32148107eD71595dE1bF76f8d4A08141";
 
-            let deployedNetwork = WineCoinContract.networks[networkId];
-            let WineCoin = new web3.eth.Contract(
-                WineCoinContract.abi,
-                deployedNetwork && deployedNetwork.address
-            );
+            let WineCoin = new web3.eth.Contract(abi, contractAddress);
+
+            //let networkId = await web3.eth.net.getId();
+
+            // let deployedNetwork = WineCoinContract.networks[networkId];
+            // let WineCoin = new web3.eth.Contract(
+            //     WineCoinContract.abi,
+            //     deployedNetwork && deployedNetwork.address
+            // );
 
             // Should print WCT
             //let mySym = await WineCoin.methods.symbol().call();

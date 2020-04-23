@@ -126,7 +126,9 @@ export default class WineListing extends Component {
                   </Col>
                   <Col>
                       <table>
+                          <tbody>
                           {this.generateCards()}
+                          </tbody>
                       </table>
                   </Col>
               </Row>

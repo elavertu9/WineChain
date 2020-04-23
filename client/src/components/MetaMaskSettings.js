@@ -102,7 +102,9 @@ export default class extends Component {
                             <Row>
                                 <Col className="offset-sm-1">
                                     <table>
+                                        <tbody>
                                         {this.renderMyCoins()}
+                                        </tbody>
                                     </table>
                                 </Col>
                             </Row>
