@@ -45,3 +45,19 @@
 .center-text {
     text-align: center;
 }
+
+.btn-add {
+    background-color: #ff5e6c;
+    border-radius: 10px;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.btn-add:hover {
+    background-color: #ffd0d7;
+    box-shadow: 5px 10px #888888;
+}

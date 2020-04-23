@@ -3,13 +3,14 @@ import {Container, Row, Col, Modal, ModalHeader, ModalFooter, ModalBody, Button}
 import "./resources/styles/MetaMaskSettingsStyles.css";
 import Web3Modal from "./Web3Modal";
 import WineCoin from "./WineCoin";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            web3: this.props.address,
+            web3: this.props.web3,
             address: "",
             web3Error: false,
             numCoins: 0,
@@ -26,6 +27,8 @@ export default class extends Component {
             // Get accounts
             let accounts = await this.props.web3.eth.getAccounts();
             let address = accounts[0];
+
+            this.props.updatePurchaserAddress(address);
 
             // Get coins
             let numberOwned = await this.props.WineCoin.methods.balanceOf(address).call();
@@ -55,7 +58,6 @@ export default class extends Component {
 
         } catch(error) {
             console.log(error);
-            this.setState({web3Error: true});
         }
     };
 
@@ -82,6 +84,8 @@ export default class extends Component {
     render() {
         return (
             <Container className="account-border">
+                <br/>
+                <a href="/collection" className="cog"><FontAwesomeIcon icon="cog" size='3x'/></a>
                 <Row className="pad">
                     <Col className="element-center">
                         <Web3Modal web3Error={this.state.web3Error}/>

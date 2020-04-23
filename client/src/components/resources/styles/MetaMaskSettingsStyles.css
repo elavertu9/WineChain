@@ -30,3 +30,11 @@
     font-size: 20px;
     width: 50%;
 }
+
+.cog {
+    color: black;
+}
+
+.cog:hover {
+    color: grey;
+}

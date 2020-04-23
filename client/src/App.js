@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import About from './components/About';
 import WineListing from "./components/WineListing";
+import Collection from "./components/Collection";
 import "./App.css";
 import getWeb3 from "./getWeb3";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
@@ -11,10 +12,12 @@ import {faGlobe} from '@fortawesome/free-solid-svg-icons';
 import {faTools} from '@fortawesome/free-solid-svg-icons';
 import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {faUserCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCog} from '@fortawesome/free-solid-svg-icons';
+import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 import MetaMaskSettings from "./components/MetaMaskSettings";
 import WineCoinContract from './contracts/WineCoin';
 
-library.add(faGlobe, faTools, faArrowRight, faUserCheck);
+library.add(faGlobe, faTools, faArrowRight, faUserCheck, faCog, faPlusSquare);
 
 export default class App extends Component {
     constructor(props) {
@@ -34,6 +37,8 @@ export default class App extends Component {
             purchaserWineCoinCount: 0,
             walletAddress: "" // can hard code this to a test account
         };
+
+        this.updatePurchaserAddress = this.updatePurchaserAddress.bind(this);
     }
 
     // Runs before render to ensure everything is calculated
@@ -68,12 +73,16 @@ export default class App extends Component {
         }
     };
 
+    updatePurchaserAddress(address) {
+        this.setState({purchaserAddress: address});
+    }
+
     render() {
         return (
             <Router>
                 <div>
                     <Header/>
-                    <MetaMaskSettings web3={this.state.web3} WineCoin={this.state.WineCoin}/>
+                    <MetaMaskSettings web3={this.state.web3} WineCoin={this.state.WineCoin} updatePurchaserAddress={this.updatePurchaserAddress}/>
                     <br/>
                 </div>
 
@@ -81,7 +90,8 @@ export default class App extends Component {
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/home' component={Home}/>
                     <Route exact path='/about' component={About}/>
-                    <Route exact path='/listing' render={(props) => <WineListing {...props} WineCoin={this.state.WineCoin}/>}/>
+                    <Route exact path='/collection' render={(props) => <Collection {...props} address={this.state.purchaserAddress} WineCoin={this.state.WineCoin}/>}/>
+                    <Route exact path='/listing' render={(props) => <WineListing {...props} WineCoin={this.state.WineCoin} address={this.state.purchaserAddress}/>}/>
                 </Switch>
             </Router>
         );
