@@ -6,8 +6,10 @@ import WCTitle from './resources/images/wine-coins/wc-title.png';
 // import WCLightBlue from './resources/images/wine-coins/wc-lightblue.png';
 // import WCRed from './resources/images/wine-coins/wc-red.png';
 // import WCGreen from './resources/images/wine-coins/wc-green.png';
+import AddWine from './AddWine';
 import Toolbar from './Toolbar';
 import WineCoin from './WineCoin';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class WineListing extends Component {
     constructor(props) {
@@ -17,9 +19,18 @@ export default class WineListing extends Component {
         // Used to populate coins on Wine Listing page
         this.state = {
             allCoins: [],
+            addWineModal: false,
+            input: {
+                producer: "",
+                varietal: "",
+                country: "",
+                vintage: 0
+            }
         };
 
         this.generateCards = this.generateCards.bind(this);
+        this.toggleAddWine = this.toggleAddWine.bind(this);
+        this.addWine = this.addWine.bind(this);
     }
 
     componentDidUpdate = async() => {
@@ -49,6 +60,10 @@ export default class WineListing extends Component {
         }
     };
 
+    toggleAddWine() {
+        this.setState({addWineModal: !this.state.addWineModal});
+    }
+
     generateCards() {
 
         let coinTable = [];
@@ -56,24 +71,40 @@ export default class WineListing extends Component {
         for(let i = 0; i < this.state.allCoins.length; i+=2) {
             let rowData = [];
             if(i+1 >= this.state.allCoins.length) {
-                rowData.push(<td>{this.state.allCoins[i]}</td>);
+                rowData.push(<td key={i}>{this.state.allCoins[i]}</td>);
             } else {
-                rowData.push(<td>{this.state.allCoins[i]}</td>);
-                rowData.push(<td>{this.state.allCoins[i + 1]}</td>);
+                rowData.push(<td key={i}>{this.state.allCoins[i]}</td>);
+                rowData.push(<td key={i + 1}>{this.state.allCoins[i + 1]}</td>);
             }
-            coinTable.push(<tr>{rowData}</tr>);
+            coinTable.push(<tr key={i}>{rowData}</tr>);
         }
         return coinTable;
-
-
-        // let table = this.state.allCoins.map((coin, index) =>
-        //     <tr>
-        //         <td className="listing-data" key={index}>{coin}</td>
-        //     </tr>
-        //
-        // );
-        // return table;
     }
+
+    addWine(newInput) {
+        console.log(newInput);
+        let clientInput = {
+            producer: newInput.producer,
+            varietal: newInput.varietal,
+            country: newInput.country,
+            vintage: newInput.vintage
+        };
+        this.setState({input: clientInput}, () => {
+            let results = this.addWineAPI();
+            console.log(results);
+        });
+    }
+
+    addWineAPI = async() => {
+        try {
+            console.log(this.state.input);
+            await this.props.WineCoin.methods.addWineToChain(this.state.input.producer, this.state.input.varietal, this.state.input.country, this.state.input.vintage).send({from: this.props.address, gas: 500000});
+            console.log("Succeeded");
+            document.location.href="/listing";
+        } catch(error) {
+            console.log(error);
+        }
+    };
 
     render() {
         return (
@@ -89,6 +120,10 @@ export default class WineListing extends Component {
               <br/>
 
               <Row>
+                  <Col>
+                      <button className="btn-add" onClick={() => this.toggleAddWine()}><FontAwesomeIcon icon="plus-square" size='3x'/></button>
+                      <AddWine toggle={this.toggleAddWine} updateProducer={this.updateProducer} updateVarietal={this.updateVarietal} updateCountry={this.updateCountry} updateVintage={this.updateVintage} isOpen={this.state.addWineModal} input={this.state.input} addWine={this.addWine}/>
+                  </Col>
                   <Col>
                       <table>
                           {this.generateCards()}
