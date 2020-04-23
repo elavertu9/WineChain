@@ -4,13 +4,19 @@
     margin-right: auto;
 }
 
-.account-border {
-    border: 3px #ff5e6c solid;
+.wc-image {
+    margin-top: 5%;
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-.pad {
-    padding-top: 3%;
-    padding-bottom: 3%;
+.wc-card {
+    width: 500px;
+    height:450px;
+    padding-bottom: 50px;
 }
 
 .listing-data {
@@ -28,5 +34,14 @@
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    width: 50%;
+    width: 100%;
+}
+
+.btn-wc:hover {
+    background-color: #ffd0d7;
+    box-shadow: 5px 10px #888888;
+}
+
+.center-text {
+    text-align: center;
 }
