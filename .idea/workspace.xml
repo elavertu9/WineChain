@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d624cdfa-28f0-44b7-b977-78f00dc2a1f7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/AddWine.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Collection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/resources/styles/AddWineStyles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/resources/styles/CollectionSytles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/abi.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AddWine.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AddWine.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/MetaMaskSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MetaMaskSettings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/WineListing.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/WineListing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/resources/styles/MetaMaskSettingsStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/resources/styles/MetaMaskSettingsStyles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/resources/styles/WineListingStyles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/resources/styles/WineListingStyles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../archive/cs314/t21-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SvnConfiguration">
@@ -46,6 +44,7 @@
       <updated>1587577892123</updated>
       <workItem from="1587577893707" duration="14882000" />
       <workItem from="1587615831087" duration="11005000" />
+      <workItem from="1587669894293" duration="4900000" />
     </task>
     <servers />
   </component>

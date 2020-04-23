@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Row, Col, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Input, Label} from 'reactstrap';
+import {Container, Modal, ModalHeader, ModalBody, Button, Form, FormGroup, Input, Label} from 'reactstrap';
 import "./resources/styles/AddWineStyles.css";
 
 export default class AddWine extends Component {
