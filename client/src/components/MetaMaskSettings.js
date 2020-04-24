@@ -1,9 +1,10 @@
 import React, {Component} from "react";
-import {Container, Row, Col, Modal, ModalHeader, ModalFooter, ModalBody, Button} from "reactstrap";
+import {Container, Row, Col, Modal, ModalFooter, ModalBody, Button} from "reactstrap";
 import "./resources/styles/MetaMaskSettingsStyles.css";
 import Web3Modal from "./Web3Modal";
 import WineCoin from "./WineCoin";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Pagination from "./Pagination";
 
 export default class extends Component {
     constructor(props) {
@@ -15,10 +16,12 @@ export default class extends Component {
             web3Error: false,
             numCoins: 0,
             coins: [],
-            coinsModal: false
+            coinsModal: false,
+            currentCoins: [],
+            currentPage: null,
+            totalPages: null
         };
 
-        this.renderMyCoins = this.renderMyCoins.bind(this);
         this.toggleMyCoins = this.toggleMyCoins.bind(this);
     }
 
@@ -33,21 +36,18 @@ export default class extends Component {
             // Get coins
             let numberOwned = await this.props.WineCoin.methods.balanceOf(address).call();
 
-            //let wineData = await this.props.WineCoin.methods.getWineData(1);
             let myCoins = [];
             for(let i = 0; i < numberOwned; i++) {
                 let coin = await this.props.WineCoin.methods.tokenOfOwnerByIndex(address, i).call();
                 let cardData = await this.props.WineCoin.methods.getWineData(coin).call();
-                myCoins.push(
-                    <WineCoin
-                        producer={cardData.producer}
-                        origin={cardData.country_of_origin}
-                        varietal={cardData.varietal}
-                        vintage={cardData.vintage}
-                        isVerified={cardData.verified_originator}
-                    />
-
-            );
+                let coinData =  {
+                    producer: cardData.producer,
+                    varietal: cardData.varietal,
+                    country: cardData.country_of_origin,
+                    vintage: cardData.vintage,
+                    isVerified: cardData.verified_originator
+                };
+                myCoins.push(coinData);
             }
 
             this.setState({
@@ -61,27 +61,37 @@ export default class extends Component {
         }
     };
 
-    renderMyCoins() {
-        let coinTable = [];
-
-        for(let i = 0; i < this.state.coins.length; i+=2) {
-            let rowData = [];
-            if(i+1 >= this.state.coins.length) {
-                rowData.push(<td key={i}>{this.state.coins[i]}</td>);
-            } else {
-                rowData.push(<td key={i}>{this.state.coins[i]}</td>);
-                rowData.push(<td key={i+1}>{this.state.coins[i + 1]}</td>);
-            }
-            coinTable.push(<tr key={i}>{rowData}</tr>);
-        }
-        return coinTable;
-    }
-
     toggleMyCoins() {
         this.setState({coinsModal: !this.state.coinsModal});
     }
 
+    onPageChanged = data => {
+        const { coins } = this.state;
+        const { currentPage, totalPages, pageLimit } = data;
+
+        const offset = (currentPage - 1) * pageLimit;
+        const currentCoins = coins.slice(offset, offset + pageLimit);
+
+        this.setState({ currentPage, currentCoins, totalPages });
+    };
+
     render() {
+        const {
+            coins,
+            currentCoins,
+            currentPage,
+            totalPages
+        } = this.state;
+        const totalCoins = coins.length;
+
+        if (totalCoins === 0) return null;
+
+        const headerClass = [
+            "text-dark py-2 pr-4 m-0",
+            currentPage ? "border-gray border-right" : ""
+        ]
+            .join(" ")
+            .trim();
         return (
             <Container className="account-border">
                 <br/>
@@ -96,18 +106,37 @@ export default class extends Component {
 
 
                     <Modal isOpen={this.state.coinsModal} toggle={() => this.toggleMyCoins()} size="xl">
-                        <ModalHeader toggle={() => this.toggleMyCoins()}>My Coins</ModalHeader>
                         <ModalBody>
                         </ModalBody>
-                            <Row>
-                                <Col className="offset-sm-1">
-                                    <table>
-                                        <tbody>
-                                        {this.renderMyCoins()}
-                                        </tbody>
-                                    </table>
-                                </Col>
-                            </Row>
+                        <div className="container mb-5">
+                            <div className="row">
+                                <div className="w-100 px-4 py-1 d-flex flex-row flex-wrap align-items-center justify-content-between">
+                                    <div className="d-flex flex-row align-items-center">
+                                        <h2 className={headerClass}>
+                                            <strong className="text-secondary">{totalCoins}</strong>{" "}
+                                            Owned WineCoins
+                                        </h2>
+                                        {currentPage && (
+                                            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+                                    Page <span className="font-weight-bold">{currentPage}</span> /{" "}
+                                                <span className="font-weight-bold">{totalPages}</span>
+                                </span>
+                                        )}
+                                    </div>
+                                    <div className="d-flex flex-row py-4 align-items-center">
+                                        <Pagination
+                                            totalRecords={totalCoins}
+                                            pageLimit={6}
+                                            pageNeighbours={1}
+                                            onPageChanged={this.onPageChanged}
+                                        />
+                                    </div>
+                                </div>
+                                {currentCoins.map((coin, index) => (
+                                    <WineCoin key={index} producer={coin.producer} varietal={coin.varietal} country={coin.country} vintage={coin.vintage} isVerified={coin.isVerified}/>
+                                ))}
+                            </div>
+                        </div>
                         <ModalFooter>
                             <Button color="danger" onClick={() => this.toggleMyCoins()}>Close</Button>
                         </ModalFooter>
