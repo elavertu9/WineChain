@@ -5,12 +5,46 @@
 }
 
 .wc-image {
-    margin-top: 5%;
-    width: 150px;
-    height: 150px;
-    margin-left: auto;
+    /*margin-top: 5%;*/
+    /*width: 150px;*/
+    /*height: 150px;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*display: block;*/
     margin-right: auto;
+    margin-left: auto;
     display: block;
+    height: 25%;
+    width: 25%;
+    border: none;
+}
+
+.image-div {
+    width: 25%;
+}
+
+.space {
+    width:5%;
+    display: block;
+}
+
+.card-highlight {
+
+}
+
+.card-link {
+
+}
+
+.card-highlight:hover {
+    background-color: #ffd0d7;
+    box-shadow: 5px 10px #888888;
+}
+
+.text-div {
+    display: block;
+    width: 75%;
+    padding-left: 2px;
 }
 
 .wc-card {
