@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Container, Row, Col, Modal, ModalFooter, ModalBody, Button} from "reactstrap";
+import {Container, Row, Col, Modal, ModalFooter, Button} from "reactstrap";
 import "./resources/styles/MetaMaskSettingsStyles.css";
 import Web3Modal from "./Web3Modal";
 import WineCoin from "./WineCoin";
@@ -45,7 +45,8 @@ export default class extends Component {
                     varietal: cardData.varietal,
                     country: cardData.country_of_origin,
                     vintage: cardData.vintage,
-                    isVerified: cardData.verified_originator
+                    isVerified: cardData.verified_originator,
+                    id: i
                 };
                 myCoins.push(coinData);
             }
@@ -106,8 +107,6 @@ export default class extends Component {
 
 
                     <Modal isOpen={this.state.coinsModal} toggle={() => this.toggleMyCoins()} size="xl">
-                        <ModalBody>
-                        </ModalBody>
                         <div className="container mb-5">
                             <div className="row">
                                 <div className="w-100 px-4 py-1 d-flex flex-row flex-wrap align-items-center justify-content-between">
@@ -133,7 +132,7 @@ export default class extends Component {
                                     </div>
                                 </div>
                                 {currentCoins.map((coin, index) => (
-                                    <WineCoin key={index} producer={coin.producer} varietal={coin.varietal} country={coin.country} vintage={coin.vintage} isVerified={coin.isVerified}/>
+                                    <WineCoin WineCoin={this.props.WineCoin} address={this.state.address} key={index} producer={coin.producer} varietal={coin.varietal} country={coin.country} vintage={coin.vintage} isVerified={coin.isVerified} id={coin.id}/>
                                 ))}
                             </div>
                         </div>

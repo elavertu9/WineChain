@@ -40,7 +40,7 @@ export default class Toolbar extends Component {
               <Row>
                   <Col xs="3" className="element-center">
                       <Label>
-                          <FontAwesomeIcon icon="tools" size='3x'/>
+                          <FontAwesomeIcon icon="search" size='3x'/>
                       </Label>
                   </Col>
                   <Col xs="3">

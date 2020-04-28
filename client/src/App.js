@@ -14,11 +14,13 @@ import {faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {faUserCheck} from '@fortawesome/free-solid-svg-icons';
 import {faCog} from '@fortawesome/free-solid-svg-icons';
 import {faPlusSquare} from '@fortawesome/free-solid-svg-icons';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import MetaMaskSettings from "./components/MetaMaskSettings";
 //import WineCoinContract from './contracts/WineCoin';
 import abi from './abi.json';
 
-library.add(faGlobe, faTools, faArrowRight, faUserCheck, faCog, faPlusSquare);
+library.add(faGlobe, faTools, faArrowRight, faUserCheck, faCog, faPlusSquare, faInfoCircle, faSearch);
 
 export default class App extends Component {
     constructor(props) {
