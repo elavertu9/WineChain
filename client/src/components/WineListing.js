@@ -58,7 +58,7 @@ export default class WineListing extends Component {
                   country: cardData.country_of_origin,
                   vintage: cardData.vintage,
                   isVerified: cardData.verified_originator,
-                  id: i
+                  id: coin
                 };
                 coinCollection.push(
                     coinData
