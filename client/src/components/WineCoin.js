@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import WCGreen from './resources/images/wine-coins/wc-green.png';
 import WCRed from './resources/images/wine-coins/wc-red.png';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Modal, ModalBody, Row, Col, ModalFooter, ModalHeader, Button} from 'reactstrap';
+import {Modal, ModalBody, Row, Col, ModalFooter, ModalHeader, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
 class WineCoin extends Component {
     constructor(props) {
@@ -11,12 +11,15 @@ class WineCoin extends Component {
         this.state = {
           modal: false,
           isCoinOwner: false,
-          coinOwner: ""
+          coinOwner: "",
+          transferModal: false,
+          toAddress: ""
         };
 
         this.toggleMoreInfo = this.toggleMoreInfo.bind(this);
-        this.transferCoin = this.transferCoin.bind(this);
         this.burnCoin = this.burnCoin.bind(this);
+        this.updateToAddress = this.updateToAddress.bind(this);
+        this.toggleTransfer = this.toggleTransfer.bind(this);
     }
     toggleMoreInfo() {
         this.setState({modal: !this.state.modal});
@@ -37,24 +40,66 @@ class WineCoin extends Component {
       }
     };
 
-    transferCoin() {
-        console.log("Transfer button clicked");
-        // need to prompt user with form to enter transfer to address
+    burnCoin = async() => {
+        try {
+            console.log("Burn initiated....");
+
+            await this.props.WineCoin.methods.burn(this.props.id).send({from: this.props.address, gas: 500000});
+
+            console.log("Succeeded!");
+
+            window.location.href = "/listing";
+
+        } catch(error) {
+            console.log(error);
+        }
+    };
+
+    toggleTransfer() {
+        this.setState({transferModal: !this.state.transferModal});
     }
 
-    burnCoin() {
-        console.log("Burn button clicked");
-        // need to hit with are you sure modal and then make the call
+    updateToAddress(e) {
+        e.preventDefault();
+        this.setState({toAddress: e.target.value});
     }
+
+    formSubmit = async() => {
+        try {
+            console.log("transfer initiated...");
+
+            await this.props.WineCoin.methods.transferFrom(this.props.address, this.state.toAddress, this.props.id).send({from: this.props.address, gas: 500000});
+
+            console.log("Succeeded");
+
+            window.location.href = "/listing";
+        } catch(error) {
+            console.log(error);
+        }
+
+    };
 
     render() {
         return (
             <Fragment>
 
 
+                <Modal isOpen={this.state.transferModal} toggle={() => this.toggleTransfer()} size="lg">
+                    <ModalHeader onClick={() => this.toggleTransfer()}>Transfer Coin</ModalHeader>
+                    <ModalBody>
+                        <Form>
+                            <FormGroup>
+                                <Label for="toAddress">Address</Label>
+                                <Input type="text" name="toAddress" id="toAddress" value={this.state.toAddress} onChange={(e) => this.updateToAddress(e)} placeholder="Address to transfer to..." required/>
+                            </FormGroup>
+
+                        </Form>
+                        <Button color="success" type="submit" onClick={() => this.formSubmit()}>Submit</Button>
+                    </ModalBody>
+                </Modal>
 
 
-                <Modal isOpen={this.state.modal} toggle={() => this.toggleMoreInfo()}>
+                <Modal isOpen={this.state.modal} toggle={() => this.toggleMoreInfo()} size="lg">
                     <ModalHeader toggle={() => this.toggleMoreInfo()}><strong>
                         {this.props.isVerified ? <img
                             src={WCGreen}
@@ -113,7 +158,7 @@ class WineCoin extends Component {
 
                             <Row>
                                 <Col className="element-center">
-                                    <Button onClick={() => this.transferCoin()} color="primary">Transfer</Button>
+                                    <Button onClick={() => this.toggleTransfer()} color="primary">Transfer</Button>
                                 </Col>
 
                                 <Col className="element-center">

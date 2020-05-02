@@ -46,7 +46,7 @@ export default class extends Component {
                     country: cardData.country_of_origin,
                     vintage: cardData.vintage,
                     isVerified: cardData.verified_originator,
-                    id: i
+                    id: coin
                 };
                 myCoins.push(coinData);
             }
