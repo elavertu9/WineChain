@@ -12,7 +12,8 @@ export default class Collection extends Component {
             title: "",
             verifyAddress: '',
             origTitle: '',
-            alertModal: false
+            alertModal: false,
+            loading: false
         };
 
         this.verifyOriginator = this.verifyOriginator.bind(this);
@@ -65,6 +66,7 @@ export default class Collection extends Component {
     verifyAll = async() => {
         try {
             console.log("verify all initiated...");
+            this.setState({loading: true});
             if(this.state.isVerified) {
                 // Get coins
                 let numberOwned = await this.props.WineCoin.methods.balanceOf(this.props.address).call();
@@ -76,6 +78,8 @@ export default class Collection extends Component {
                 }
 
                 console.log("Success!");
+
+                this.setState({loading: false});
 
                 window.location.href = "/collection";
 
@@ -120,6 +124,7 @@ export default class Collection extends Component {
                   <Col>
                       <p>This operation can take a while...</p>
                       <Button color="primary" onClick={() => this.verifyAll()}>Verify All Coins</Button>
+                      {this.state.loading ? <div className="loader"></div>: <p/>}
                   </Col>
               </Row>
 
