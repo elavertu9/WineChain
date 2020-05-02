@@ -38,7 +38,8 @@ export default class App extends Component {
 
             purchaserAddress: "",
             purchaserWineCoinCount: 0,
-            walletAddress: "" // can hard code this to a test account
+            walletAddress: "", // can hard code this to a test account
+            contractOwnerAddress: ''
         };
 
         this.updatePurchaserAddress = this.updatePurchaserAddress.bind(this);
@@ -53,9 +54,11 @@ export default class App extends Component {
 
             let web3 = await getWeb3();
 
-            const contractAddress = "0x13fFf07b32148107eD71595dE1bF76f8d4A08141";
+            const contractAddress = "0xa6Bc20A5A149e788021f6a74e861e2ff4D01C760";
 
             let WineCoin = new web3.eth.Contract(abi, contractAddress);
+
+            let contractOwnerAddress = await WineCoin.methods.owner().call();
 
             //let networkId = await web3.eth.net.getId();
 
@@ -71,7 +74,8 @@ export default class App extends Component {
 
             this.setState({
                 WineCoin: WineCoin,
-                web3: web3
+                web3: web3,
+                contractOwnerAddress: contractOwnerAddress
             });
 
         } catch(error) {
@@ -97,7 +101,7 @@ export default class App extends Component {
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/home' component={Home}/>
                     <Route exact path='/about' component={About}/>
-                    <Route exact path='/collection' render={(props) => <Collection {...props} address={this.state.purchaserAddress} WineCoin={this.state.WineCoin}/>}/>
+                    <Route exact path='/collection' render={(props) => <Collection {...props} address={this.state.purchaserAddress} contractOwnerAddress={this.state.contractOwnerAddress} WineCoin={this.state.WineCoin}/>}/>
                     <Route exact path='/listing' render={(props) => <WineListing {...props} WineCoin={this.state.WineCoin} address={this.state.purchaserAddress}/>}/>
                 </Switch>
             </Router>
