@@ -13,7 +13,8 @@ class WineCoin extends Component {
           isCoinOwner: false,
           coinOwner: "",
           transferModal: false,
-          toAddress: ""
+          toAddress: "",
+          loading: false
         };
 
         this.toggleMoreInfo = this.toggleMoreInfo.bind(this);
@@ -43,10 +44,13 @@ class WineCoin extends Component {
     burnCoin = async() => {
         try {
             console.log("Burn initiated....");
+            this.setState({loading: true});
 
             await this.props.WineCoin.methods.burn(this.props.id).send({from: this.props.address, gas: 500000});
 
             console.log("Succeeded!");
+
+            this.setState({loading: false});
 
             window.location.href = "/listing";
 
@@ -67,10 +71,13 @@ class WineCoin extends Component {
     formSubmit = async() => {
         try {
             console.log("transfer initiated...");
+            this.setState({loading: true});
 
             await this.props.WineCoin.methods.transferFrom(this.props.address, this.state.toAddress, this.props.id).send({from: this.props.address, gas: 500000});
 
             console.log("Succeeded");
+
+            this.setState({loading: false});
 
             window.location.href = "/listing";
         } catch(error) {
@@ -157,6 +164,7 @@ class WineCoin extends Component {
                             ?
 
                             <Row>
+                                {this.state.loading ? <div className="loader"></div> : <div/>}
                                 <Col className="element-center">
                                     <Button onClick={() => this.toggleTransfer()} color="primary">Transfer</Button>
                                 </Col>
