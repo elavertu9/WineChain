@@ -1,5 +1,4 @@
 # WineChain
-CS481 Group Project
 
 ## Group Members
 * Evan Lavertu
