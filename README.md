@@ -39,15 +39,18 @@ Template is built using python and bash.
 * Run 
   * ```npm start```
   * Starts localhost at port 3000
-```
 
 
 <!-- CONTACT -->
 ## Contact
-Evan Lavertu - evan.lavertu@gmail.com
-Brandt Reutimann 
+Evan Lavertu - [www.lavertu.dev](https://www.lavertu.dev)
+<br/>
+Brandt Reutimann - [www.brandtreutimann.dev](https://www.brandtreutimann.dev)
+<br/>
 Cody Coleman
+<br/>
 Kyle Lagerberg
+<br/>
 
-Project Link: [https://github.com/elavertu9/WineChain](https://github.com/elavertu9/WineChain)
+Project Link: [WineChain](https://github.com/elavertu9/WineChain)
 
